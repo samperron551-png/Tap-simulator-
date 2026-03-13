@@ -1,4 +1,4 @@
-import { Pet, Upgrade, Tool, Egg, WhatsNew, RebirthOption, SuperRebirthOption, RebirthUpgrade, SuperRebirthUpgrade, World, Code } from './types';
+import { Pet, Upgrade, Tool, Egg, WhatsNew, RebirthOption, SuperRebirthOption, RebirthUpgrade, SuperRebirthUpgrade, Island, Code } from './types';
 
 export const UPGRADES: Upgrade[] = [
   // Click Upgrades
@@ -151,8 +151,14 @@ export const PET_DATA: Omit<Pet, 'id'>[] = [
   { name: 'Lord of Hell', multiplier: 50000000000.0, rarity: 'Mythical', color: '#FF0000', icon: '🔥' },
   
   // New Mythical and Secret Pets
-  { name: 'Mythical Pet 1', multiplier: 1000000.0, rarity: 'Mythical', color: '#FFD700', icon: '🔥' },
-  { name: 'Secret Pet 1', multiplier: 10000000.0, rarity: 'Secret', color: '#4B0082', icon: '🌑' },
+  // D2 Pets (60-66)
+  { name: 'D2 Pet 1', multiplier: 1000000000.0, rarity: 'Common', color: '#2ecc71', icon: '🐾' },
+  { name: 'D2 Pet 2', multiplier: 2000000000.0, rarity: 'Uncommon', color: '#2ecc71', icon: '🐾' },
+  { name: 'D2 Pet 3', multiplier: 5000000000.0, rarity: 'Rare', color: '#f1c40f', icon: '🌵' },
+  { name: 'D2 Pet 4', multiplier: 10000000000.0, rarity: 'Epic', color: '#f1c40f', icon: '🌵' },
+  { name: 'D2 Pet 5', multiplier: 50000000000.0, rarity: 'Legendary', color: '#f1c40f', icon: '🌵' },
+  { name: 'D2 Mythical Pet', multiplier: 100000000000.0, rarity: 'Mythical', color: '#FFD700', icon: '🔥' },
+  { name: 'D2 Secret Pet', multiplier: 500000000000.0, rarity: 'Secret', color: '#4B0082', icon: '🌑' },
 ];
 
 export const TOOLS: Tool[] = [
@@ -357,156 +363,140 @@ export const EGGS: Egg[] = [
       { petIndex: 29, chance: 0.01 }, // Secret
     ],
   },
+  {
+    id: 'egg_d2_basic',
+    name: 'Island 10 Egg',
+    price: 100000000000,
+    currency: 'clicks',
+    color: '#2ecc71',
+    pets: [
+      { petIndex: 60, chance: 0.25 },
+      { petIndex: 61, chance: 0.2 },
+      { petIndex: 62, chance: 0.15 },
+      { petIndex: 63, chance: 0.15 },
+      { petIndex: 64, chance: 0.15 },
+      { petIndex: 65, chance: 0.09 }, // Mythical
+      { petIndex: 66, chance: 0.01 }, // Secret
+    ],
+  },
+  {
+    id: 'egg_d2_desert',
+    name: 'Island 11 Egg',
+    price: 500000000000,
+    currency: 'clicks',
+    color: '#f1c40f',
+    pets: [
+      { petIndex: 60, chance: 0.25 },
+      { petIndex: 61, chance: 0.2 },
+      { petIndex: 62, chance: 0.15 },
+      { petIndex: 63, chance: 0.15 },
+      { petIndex: 64, chance: 0.15 },
+      { petIndex: 65, chance: 0.09 }, // Mythical
+      { petIndex: 66, chance: 0.01 }, // Secret
+    ],
+  },
+  {
+    id: 'egg_d2_3',
+    name: 'Island 12 Egg',
+    price: 2500000000000,
+    currency: 'clicks',
+    color: '#3498db',
+    pets: [
+      { petIndex: 60, chance: 0.25 },
+      { petIndex: 61, chance: 0.2 },
+      { petIndex: 62, chance: 0.15 },
+      { petIndex: 63, chance: 0.15 },
+      { petIndex: 64, chance: 0.15 },
+      { petIndex: 65, chance: 0.09 }, // Mythical
+      { petIndex: 66, chance: 0.01 }, // Secret
+    ],
+  }
 ];
 
-export const WORLDS: World[] = [
+export const ISLANDS: Island[] = [
   {
     id: 'world_forest',
-    name: 'Forest',
+    name: 'Island 1',
     cost: 0,
     color: 'emerald',
     eggIds: ['egg_basic', 'egg_rare', 'egg_mythic', 'egg_gem']
   },
   {
     id: 'world_desert',
-    name: 'Desert',
+    name: 'Island 2',
     cost: 500000,
     color: 'amber',
     eggIds: ['egg_desert']
   },
   {
     id: 'world_winter',
-    name: 'Winter',
+    name: 'Island 3',
     cost: 25000000,
     color: 'cyan',
     eggIds: ['egg_winter']
   },
   {
     id: 'world_lava',
-    name: 'Lava',
+    name: 'Island 4',
     cost: 1000000000,
     color: 'red',
     eggIds: ['egg_lava']
   },
   {
     id: 'world_cyber',
-    name: 'Cyber',
+    name: 'Island 5',
     cost: 50000000000,
     color: 'lime',
     eggIds: ['egg_cyber']
   },
   {
     id: 'world_ocean',
-    name: 'Ocean',
+    name: 'Island 6',
     cost: 2500000000000,
     color: 'blue',
     eggIds: ['egg_ocean']
   },
   {
     id: 'world_space',
-    name: 'Space',
+    name: 'Island 7',
     cost: 100000000000000,
     color: 'indigo',
     eggIds: ['egg_space']
   },
   {
     id: 'world_heaven',
-    name: 'Heaven',
+    name: 'Island 8',
     cost: 5000000000000000,
     color: 'sky',
     eggIds: ['egg_heaven']
   },
   {
     id: 'world_hell',
-    name: 'Hell',
+    name: 'Island 9',
     cost: 100000000000000000,
     color: 'rose',
     eggIds: ['egg_hell']
-  }
-];
-
-export const WORLDS_D2: World[] = [
+  },
   {
     id: 'd2_world_1',
-    name: 'D2 World 1',
-    cost: 1000000000000,
+    name: 'Island 10',
+    cost: 1000000000000000000,
     color: 'emerald',
     eggIds: ['egg_d2_basic']
   },
   {
     id: 'd2_world_2',
-    name: 'D2 World 2',
-    cost: 5000000000000,
+    name: 'Island 11',
+    cost: 5000000000000000000,
     color: 'amber',
     eggIds: ['egg_d2_desert']
   },
   {
     id: 'd2_world_3',
-    name: 'D2 World 3',
-    cost: 25000000000000,
+    name: 'Island 12',
+    cost: 25000000000000000000,
     color: 'blue',
     eggIds: ['egg_d2_3']
-  }
-];
-
-export const PET_DATA_D2: Pet[] = [
-  { id: 'd2_pet_1', name: 'D2 Pet 1', multiplier: 1000000000.0, rarity: 'Common', color: '#2ecc71', icon: '🐾' },
-  { id: 'd2_pet_2', name: 'D2 Pet 2', multiplier: 2000000000.0, rarity: 'Uncommon', color: '#2ecc71', icon: '🐾' },
-  { id: 'd2_pet_3', name: 'D2 Pet 3', multiplier: 5000000000.0, rarity: 'Rare', color: '#f1c40f', icon: '🌵' },
-  { id: 'd2_pet_4', name: 'D2 Pet 4', multiplier: 10000000000.0, rarity: 'Epic', color: '#f1c40f', icon: '🌵' },
-  { id: 'd2_pet_5', name: 'D2 Pet 5', multiplier: 50000000000.0, rarity: 'Legendary', color: '#f1c40f', icon: '🌵' },
-  { id: 'd2_pet_6', name: 'D2 Mythical Pet', multiplier: 100000000000.0, rarity: 'Mythical', color: '#FFD700', icon: '🔥' },
-  { id: 'd2_pet_7', name: 'D2 Secret Pet', multiplier: 500000000000.0, rarity: 'Secret', color: '#4B0082', icon: '🌑' },
-];
-
-export const EGGS_D2: Egg[] = [
-  {
-    id: 'egg_d2_basic',
-    name: 'D2 Basic Egg',
-    price: 100000000000,
-    currency: 'clicks',
-    color: '#2ecc71',
-    pets: [
-      { petIndex: 0, chance: 0.25 },
-      { petIndex: 1, chance: 0.2 },
-      { petIndex: 2, chance: 0.15 },
-      { petIndex: 3, chance: 0.15 },
-      { petIndex: 4, chance: 0.15 },
-      { petIndex: 5, chance: 0.09 }, // Mythical
-      { petIndex: 6, chance: 0.01 }, // Secret
-    ],
-  },
-  {
-    id: 'egg_d2_desert',
-    name: 'D2 Desert Egg',
-    price: 500000000000,
-    currency: 'clicks',
-    color: '#f1c40f',
-    pets: [
-      { petIndex: 0, chance: 0.25 },
-      { petIndex: 1, chance: 0.2 },
-      { petIndex: 2, chance: 0.15 },
-      { petIndex: 3, chance: 0.15 },
-      { petIndex: 4, chance: 0.15 },
-      { petIndex: 5, chance: 0.09 }, // Mythical
-      { petIndex: 6, chance: 0.01 }, // Secret
-    ],
-  },
-  {
-    id: 'egg_d2_3',
-    name: 'D2 World 3 Egg',
-    price: 2500000000000,
-    currency: 'clicks',
-    color: '#3498db',
-    pets: [
-      { petIndex: 0, chance: 0.25 },
-      { petIndex: 1, chance: 0.2 },
-      { petIndex: 2, chance: 0.15 },
-      { petIndex: 3, chance: 0.15 },
-      { petIndex: 4, chance: 0.15 },
-      { petIndex: 5, chance: 0.09 }, // Mythical
-      { petIndex: 6, chance: 0.01 }, // Secret
-    ],
   }
 ];
 
@@ -594,11 +584,11 @@ export const SUPER_REBIRTH_UPGRADES: SuperRebirthUpgrade[] = [
 ];
 
 export const WHATS_NEW: WhatsNew = {
-  title: "Update 2.3.0: ISLAND WORLDS!",
+  title: "Update 2.3.0: ISLAND ADVENTURE!",
   items: [
-    { icon: '🏝️', text: 'Worlds are now Islands!' },
-    { icon: '🌊', text: 'Dimension 2 expanded with World 2 and 3!' },
-    { icon: '💰', text: 'Pets rebalanced to billions!' },
-    { icon: '🎁', text: 'New Codes! Use ISLANDS, WORLD2 for rewards!' },
+    { icon: '🏝️', text: 'All worlds are now Islands!' },
+    { icon: '🗺️', text: 'Dimensions removed for a smoother journey!' },
+    { icon: '💰', text: 'New Island 10, 11, and 12 added!' },
+    { icon: '🎁', text: 'Use code ISLANDS for a massive boost!' },
   ]
 };

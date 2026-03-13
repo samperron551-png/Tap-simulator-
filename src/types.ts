@@ -51,10 +51,8 @@ export interface GameState {
   pets: Pet[];
   equippedPets: string[];
   maxEquippedPets: number;
-  currentWorldId: string;
-  unlockedWorlds: string[];
-  currentDimension: number;
-  unlockedDimensions: number[];
+  currentIslandId: string;
+  unlockedIslands: string[];
   usedCodes: string[];
   autoDelete: Record<Rarity, boolean>;
   tripleHatch: boolean;
@@ -70,7 +68,7 @@ export interface GameState {
   lastSave: number;
 }
 
-export interface World {
+export interface Island {
   id: string;
   name: string;
   cost: number;

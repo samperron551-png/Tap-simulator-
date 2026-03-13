@@ -22,8 +22,8 @@ import {
   Ticket,
   Settings
 } from 'lucide-react';
-import { GameState, Pet, Upgrade, Egg, Tool, RebirthOption, SuperRebirthOption, RebirthUpgrade, SuperRebirthUpgrade } from './types';
-import { UPGRADES, PET_DATA, PET_DATA_D2, WHATS_NEW, EGGS, EGGS_D2, TOOLS, REBIRTH_OPTIONS, SUPER_REBIRTH_OPTIONS, REBIRTH_UPGRADES, SUPER_REBIRTH_UPGRADES, WORLDS, WORLDS_D2, CODES } from './constants';
+import { GameState, Pet, Upgrade, Egg, Tool, RebirthOption, SuperRebirthOption, RebirthUpgrade, SuperRebirthUpgrade, Island } from './types';
+import { UPGRADES, PET_DATA, WHATS_NEW, EGGS, TOOLS, REBIRTH_OPTIONS, SUPER_REBIRTH_OPTIONS, REBIRTH_UPGRADES, SUPER_REBIRTH_UPGRADES, ISLANDS, CODES } from './constants';
 import { formatNumber } from './utils';
 
 const SAVE_KEY = 'clicker_sim_save_v1';
@@ -40,10 +40,8 @@ const INITIAL_STATE: GameState = {
   pets: [],
   equippedPets: [],
   maxEquippedPets: 3,
-  currentWorldId: 'world_forest',
-  unlockedWorlds: ['world_forest'],
-  currentDimension: 1,
-  unlockedDimensions: [1],
+  currentIslandId: 'world_forest',
+  unlockedIslands: ['world_forest'],
   usedCodes: [],
   autoDelete: {
     'Common': false,
@@ -94,9 +92,9 @@ export default function App() {
 
   const [hatchingCutscene, setHatchingCutscene] = useState<Pet | null>(null);
 
-  const currentWorlds = state.currentDimension === 1 ? WORLDS : WORLDS_D2;
-  const currentEggs = state.currentDimension === 1 ? EGGS : EGGS_D2;
-  const currentPets = state.currentDimension === 1 ? PET_DATA : PET_DATA_D2;
+  const currentIslands = ISLANDS;
+  const currentEggs = EGGS;
+  const currentPets = PET_DATA;
 
   // Refs for game loop
   const stateRef = useRef(state);
@@ -429,8 +427,8 @@ export default function App() {
         ownedTools: prev.ownedTools,
         currentToolId: prev.currentToolId,
         rebirthUpgrades: prev.rebirthUpgrades, // Keep permanent upgrades
-        currentWorldId: prev.currentWorldId,
-        unlockedWorlds: prev.unlockedWorlds,
+        currentIslandId: prev.currentIslandId,
+        unlockedIslands: prev.unlockedIslands,
       }));
     }
   };
@@ -449,13 +447,10 @@ export default function App() {
     }
   };
 
-  const switchDimension = () => {
-    setState(prev => ({
-      ...prev,
-      currentDimension: prev.currentDimension === 1 ? 2 : 1,
-      currentWorldId: prev.currentDimension === 1 ? 'd2_world_1' : 'world_forest',
-      unlockedWorlds: prev.currentDimension === 1 ? ['d2_world_1'] : ['world_forest'],
-    }));
+  const travelToIsland = (islandId: string) => {
+    if (state.unlockedIslands.includes(islandId)) {
+      setState(prev => ({ ...prev, currentIslandId: islandId }));
+    }
   };
 
   const buySuperRebirthUpgrade = (upgrade: SuperRebirthUpgrade) => {
@@ -515,22 +510,16 @@ export default function App() {
     }));
   };
 
-  const unlockWorld = (worldId: string) => {
-    const world = currentWorlds.find(w => w.id === worldId);
-    if (!world) return;
-    if (state.clicks >= world.cost && !state.unlockedWorlds.includes(worldId)) {
+  const unlockIsland = (islandId: string) => {
+    const island = currentIslands.find(w => w.id === islandId);
+    if (!island) return;
+    if (state.clicks >= island.cost && !state.unlockedIslands.includes(islandId)) {
       setState(prev => ({
         ...prev,
-        clicks: prev.clicks - world.cost,
-        unlockedWorlds: [...prev.unlockedWorlds, worldId],
-        currentWorldId: worldId
+        clicks: prev.clicks - island.cost,
+        unlockedIslands: [...prev.unlockedIslands, islandId],
+        currentIslandId: islandId
       }));
-    }
-  };
-
-  const travelToWorld = (worldId: string) => {
-    if (state.unlockedWorlds.includes(worldId)) {
-      setState(prev => ({ ...prev, currentWorldId: worldId }));
     }
   };
 
@@ -584,7 +573,7 @@ export default function App() {
             <div className="bg-black/5 px-4 py-1.5 rounded-full border border-black/5 flex items-center gap-2">
               <Globe size={14} className="text-blue-500" />
               <span className="text-xs font-black uppercase tracking-widest">
-                {currentWorlds.find(w => w.id === state.currentWorldId)?.name || 'Forest'}
+                {currentIslands.find(w => w.id === state.currentIslandId)?.name || 'Forest'}
               </span>
             </div>
           </div>
@@ -660,7 +649,7 @@ export default function App() {
               { id: 'upgrades', icon: Zap, label: 'Upgrades' },
               { id: 'pets', icon: PawPrint, label: 'Pets' },
               { id: 'rebirth', icon: RotateCcw, label: 'Rebirth' },
-              { id: 'worlds', icon: Globe, label: 'Worlds' },
+              { id: 'worlds', icon: Globe, label: 'Islands' },
               { id: 'codes', icon: Ticket, label: 'Codes' },
               { id: 'settings', icon: Settings, label: 'Settings' },
             ].map(tab => (
@@ -760,8 +749,8 @@ export default function App() {
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {currentEggs.filter(egg => {
-                      const currentWorld = currentWorlds.find(w => w.id === state.currentWorldId);
-                      return currentWorld?.eggIds.includes(egg.id);
+                      const currentIsland = currentIslands.find(w => w.id === state.currentIslandId);
+                      return currentIsland?.eggIds.includes(egg.id);
                     }).map(egg => (
                       <button
                         key={egg.id}
@@ -1017,12 +1006,6 @@ export default function App() {
 
             {activeTab === 'rebirth' && (
               <div className="space-y-8">
-                <button
-                  onClick={switchDimension}
-                  className="w-full p-4 rounded-2xl border-2 border-indigo-500 bg-indigo-50 hover:shadow-lg font-black text-sm"
-                >
-                  Switch to Dimension {state.currentDimension === 1 ? 2 : 1}
-                </button>
                 <section>
                   <h3 className="text-xs font-black text-black/30 uppercase tracking-widest mb-3">Choose Rebirth</h3>
                   <div className="grid grid-cols-1 gap-3">
@@ -1242,9 +1225,9 @@ export default function App() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
-                  {currentWorlds.map((world, index) => {
-                    const isUnlocked = state.unlockedWorlds.includes(world.id);
-                    const isCurrent = state.currentWorldId === world.id;
+                  {currentIslands.map((world, index) => {
+                    const isUnlocked = state.unlockedIslands.includes(world.id);
+                    const isCurrent = state.currentIslandId === world.id;
                     const canAfford = state.clicks >= world.cost;
 
                     return (
@@ -1290,7 +1273,7 @@ export default function App() {
                               </div>
                             ) : isUnlocked ? (
                               <button 
-                                onClick={() => travelToWorld(world.id)}
+                                onClick={() => travelToIsland(world.id)}
                                 className="bg-black text-white px-6 py-3 rounded-2xl text-xs font-black hover:scale-110 transition-transform shadow-lg flex items-center gap-2"
                               >
                                 <ChevronRight size={14} />
@@ -1298,7 +1281,7 @@ export default function App() {
                               </button>
                             ) : (
                               <button 
-                                onClick={() => unlockWorld(world.id)}
+                                onClick={() => unlockIsland(world.id)}
                                 disabled={!canAfford}
                                 className={`px-6 py-3 rounded-2xl text-xs font-black transition-all shadow-lg ${
                                   canAfford ? 'bg-emerald-500 text-white hover:scale-110' : 'bg-black/10 text-black/30'
