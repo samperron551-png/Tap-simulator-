@@ -150,15 +150,32 @@ export const PET_DATA: Omit<Pet, 'id'>[] = [
   { name: 'Abyssal Dragon', multiplier: 10000000000.0, rarity: 'Legendary', color: '#800080', icon: '🐉' },
   { name: 'Lord of Hell', multiplier: 50000000000.0, rarity: 'Mythical', color: '#FF0000', icon: '🔥' },
   
-  // New Mythical and Secret Pets
-  // D2 Pets (60-66)
-  { name: 'D2 Pet 1', multiplier: 1000000000.0, rarity: 'Common', color: '#2ecc71', icon: '🐾' },
-  { name: 'D2 Pet 2', multiplier: 2000000000.0, rarity: 'Uncommon', color: '#2ecc71', icon: '🐾' },
-  { name: 'D2 Pet 3', multiplier: 5000000000.0, rarity: 'Rare', color: '#f1c40f', icon: '🌵' },
-  { name: 'D2 Pet 4', multiplier: 10000000000.0, rarity: 'Epic', color: '#f1c40f', icon: '🌵' },
-  { name: 'D2 Pet 5', multiplier: 50000000000.0, rarity: 'Legendary', color: '#f1c40f', icon: '🌵' },
-  { name: 'D2 Mythical Pet', multiplier: 100000000000.0, rarity: 'Mythical', color: '#FFD700', icon: '🔥' },
-  { name: 'D2 Secret Pet', multiplier: 500000000000.0, rarity: 'Secret', color: '#4B0082', icon: '🌑' },
+  // Island 10 Pets (60-66)
+  { name: 'Emerald Dog', multiplier: 1000000000.0, rarity: 'Common', color: '#2ecc71', icon: '🐶' },
+  { name: 'Emerald Cat', multiplier: 2000000000.0, rarity: 'Uncommon', color: '#2ecc71', icon: '🐱' },
+  { name: 'Emerald Fox', multiplier: 5000000000.0, rarity: 'Rare', color: '#2ecc71', icon: '🦊' },
+  { name: 'Emerald Golem', multiplier: 10000000000.0, rarity: 'Epic', color: '#2ecc71', icon: '🗿' },
+  { name: 'Emerald Dragon', multiplier: 50000000000.0, rarity: 'Legendary', color: '#2ecc71', icon: '🐉' },
+  { name: 'Emerald God', multiplier: 100000000000.0, rarity: 'Mythical', color: '#2ecc71', icon: '✨' },
+  { name: 'Emerald Secret', multiplier: 500000000000.0, rarity: 'Secret', color: '#2ecc71', icon: '💎' },
+
+  // Island 11 Pets (67-73)
+  { name: 'Amber Dog', multiplier: 5000000000.0, rarity: 'Common', color: '#f1c40f', icon: '🐶' },
+  { name: 'Amber Cat', multiplier: 10000000000.0, rarity: 'Uncommon', color: '#f1c40f', icon: '🐱' },
+  { name: 'Amber Fox', multiplier: 25000000000.0, rarity: 'Rare', color: '#f1c40f', icon: '🦊' },
+  { name: 'Amber Golem', multiplier: 50000000000.0, rarity: 'Epic', color: '#f1c40f', icon: '🗿' },
+  { name: 'Amber Dragon', multiplier: 250000000000.0, rarity: 'Legendary', color: '#f1c40f', icon: '🐉' },
+  { name: 'Amber God', multiplier: 500000000000.0, rarity: 'Mythical', color: '#f1c40f', icon: '✨' },
+  { name: 'Amber Secret', multiplier: 2500000000000.0, rarity: 'Secret', color: '#f1c40f', icon: '💎' },
+
+  // Island 12 Pets (74-80)
+  { name: 'Sapphire Dog', multiplier: 25000000000.0, rarity: 'Common', color: '#3498db', icon: '🐶' },
+  { name: 'Sapphire Cat', multiplier: 50000000000.0, rarity: 'Uncommon', color: '#3498db', icon: '🐱' },
+  { name: 'Sapphire Fox', multiplier: 125000000000.0, rarity: 'Rare', color: '#3498db', icon: '🦊' },
+  { name: 'Sapphire Golem', multiplier: 250000000000.0, rarity: 'Epic', color: '#3498db', icon: '🗿' },
+  { name: 'Sapphire Dragon', multiplier: 1250000000000.0, rarity: 'Legendary', color: '#3498db', icon: '🐉' },
+  { name: 'Sapphire God', multiplier: 2500000000000.0, rarity: 'Mythical', color: '#3498db', icon: '✨' },
+  { name: 'Sapphire Secret', multiplier: 12500000000000.0, rarity: 'Secret', color: '#3498db', icon: '💎' },
 ];
 
 export const TOOLS: Tool[] = [
@@ -386,13 +403,13 @@ export const EGGS: Egg[] = [
     currency: 'clicks',
     color: '#f1c40f',
     pets: [
-      { petIndex: 60, chance: 0.25 },
-      { petIndex: 61, chance: 0.2 },
-      { petIndex: 62, chance: 0.15 },
-      { petIndex: 63, chance: 0.15 },
-      { petIndex: 64, chance: 0.15 },
-      { petIndex: 65, chance: 0.09 }, // Mythical
-      { petIndex: 66, chance: 0.01 }, // Secret
+      { petIndex: 67, chance: 0.25 },
+      { petIndex: 68, chance: 0.2 },
+      { petIndex: 69, chance: 0.15 },
+      { petIndex: 70, chance: 0.15 },
+      { petIndex: 71, chance: 0.15 },
+      { petIndex: 72, chance: 0.09 }, // Mythical
+      { petIndex: 73, chance: 0.01 }, // Secret
     ],
   },
   {
@@ -402,13 +419,13 @@ export const EGGS: Egg[] = [
     currency: 'clicks',
     color: '#3498db',
     pets: [
-      { petIndex: 60, chance: 0.25 },
-      { petIndex: 61, chance: 0.2 },
-      { petIndex: 62, chance: 0.15 },
-      { petIndex: 63, chance: 0.15 },
-      { petIndex: 64, chance: 0.15 },
-      { petIndex: 65, chance: 0.09 }, // Mythical
-      { petIndex: 66, chance: 0.01 }, // Secret
+      { petIndex: 74, chance: 0.25 },
+      { petIndex: 75, chance: 0.2 },
+      { petIndex: 76, chance: 0.15 },
+      { petIndex: 77, chance: 0.15 },
+      { petIndex: 78, chance: 0.15 },
+      { petIndex: 79, chance: 0.09 }, // Mythical
+      { petIndex: 80, chance: 0.01 }, // Secret
     ],
   }
 ];
@@ -588,7 +605,8 @@ export const WHATS_NEW: WhatsNew = {
   items: [
     { icon: '🏝️', text: 'All worlds are now Islands!' },
     { icon: '🗺️', text: 'Dimensions removed for a smoother journey!' },
-    { icon: '💰', text: 'New Island 10, 11, and 12 added!' },
+    { icon: '💰', text: 'New Island 10, 11, and 12 added with unique pets!' },
+    { icon: '🥚', text: 'Fixed eggs for new islands using incorrect pets!' },
     { icon: '🎁', text: 'Use code ISLANDS for a massive boost!' },
   ]
 };
