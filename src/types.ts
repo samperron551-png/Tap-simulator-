@@ -74,6 +74,7 @@ export interface Island {
   cost: number;
   color: string;
   eggIds: string[];
+  world: number;
 }
 
 export interface Code {

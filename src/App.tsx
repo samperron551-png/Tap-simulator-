@@ -78,6 +78,7 @@ export default function App() {
     return INITIAL_STATE;
   });
 
+  const [selectedWorld, setSelectedWorld] = useState<number>(1);
   const [activeTab, setActiveTab] = useState<'shop' | 'upgrades' | 'pets' | 'rebirth' | 'worlds' | 'codes' | 'settings'>('shop');
   const [buyAmount, setBuyAmount] = useState<'1' | '10' | '100' | 'MAX'>('1');
   const [clickAnimations, setClickAnimations] = useState<{ id: number; x: number; y: number; value: number }[]>([]);
@@ -1216,96 +1217,116 @@ export default function App() {
             )}
 
             {activeTab === 'worlds' && (
-              <div className="bg-blue-400/20 rounded-3xl p-6 min-h-[400px] relative overflow-hidden">
-                {/* Water ripples background */}
-                <div className="absolute inset-0 opacity-20 pointer-events-none">
-                  <div className="absolute top-10 left-10 w-32 h-32 border-4 border-white rounded-full animate-ping" />
-                  <div className="absolute bottom-20 right-10 w-48 h-48 border-4 border-white rounded-full animate-ping [animation-delay:1s]" />
-                  <div className="absolute top-1/2 left-1/3 w-24 h-24 border-4 border-white rounded-full animate-ping [animation-delay:2s]" />
+              <div className="space-y-6">
+                <div className="flex gap-2 p-1 bg-black/5 rounded-2xl">
+                  {[1, 2].map(w => (
+                    <button
+                      key={w}
+                      onClick={() => setSelectedWorld(w)}
+                      className={`flex-1 py-3 rounded-xl font-black text-sm transition-all ${
+                        selectedWorld === w 
+                          ? 'bg-blue-500 text-white shadow-lg' 
+                          : 'text-black/40 hover:bg-black/5'
+                      }`}
+                    >
+                      WORLD {w}
+                    </button>
+                  ))}
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
-                  {currentIslands.map((world, index) => {
-                    const isUnlocked = state.unlockedIslands.includes(world.id);
-                    const isCurrent = state.currentIslandId === world.id;
-                    const canAfford = state.clicks >= world.cost;
+                <div className="bg-blue-400/20 rounded-3xl p-6 min-h-[400px] relative overflow-hidden">
+                  {/* Water ripples background */}
+                  <div className="absolute inset-0 opacity-20 pointer-events-none">
+                    <div className="absolute top-10 left-10 w-32 h-32 border-4 border-white rounded-full animate-ping" />
+                    <div className="absolute bottom-20 right-10 w-48 h-48 border-4 border-white rounded-full animate-ping [animation-delay:1s]" />
+                    <div className="absolute top-1/2 left-1/3 w-24 h-24 border-4 border-white rounded-full animate-ping [animation-delay:2s]" />
+                  </div>
 
-                    return (
-                      <motion.div 
-                        key={world.id}
-                        initial={{ y: 20, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        transition={{ delay: index * 0.1 }}
-                        className={`group relative p-6 rounded-[3rem] border-4 transition-all hover:-translate-y-2 ${
-                          isCurrent 
-                            ? 'border-blue-500 bg-white shadow-[0_20px_50px_rgba(59,130,246,0.3)]' 
-                            : isUnlocked 
-                              ? 'border-white bg-white/90 hover:bg-white shadow-xl' 
-                              : 'border-black/5 bg-black/[0.05] opacity-70 grayscale'
-                        }`}
-                      >
-                        {/* Island "Sand" border effect */}
-                        <div className={`absolute -inset-1 rounded-[3.2rem] opacity-20 blur-sm -z-10 bg-${world.color}-500`} />
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
+                    {ISLANDS.filter(island => island.world === selectedWorld).map((world, index) => {
+                      const isUnlocked = state.unlockedIslands.includes(world.id);
+                      const isCurrent = state.currentIslandId === world.id;
+                      const canAfford = state.clicks >= world.cost;
 
-                        <div className="text-center">
-                          <div className={`w-20 h-20 mx-auto rounded-full flex items-center justify-center text-4xl mb-4 shadow-inner bg-${world.color}-100 text-${world.color}-600 border-4 border-white`}>
-                            {world.id.includes('forest') ? '🌳' : 
-                             world.id.includes('desert') ? '🌵' : 
-                             world.id.includes('winter') ? '❄️' : 
-                             world.id.includes('lava') ? '🌋' : 
-                             world.id.includes('cyber') ? '🤖' : 
-                             world.id.includes('ocean') ? '🌊' : 
-                             world.id.includes('space') ? '🚀' : 
-                             world.id.includes('heaven') ? '😇' : 
-                             world.id.includes('hell') ? '🔥' : '🏝️'}
-                          </div>
-                          
-                          <h4 className="font-black text-xl mb-1">{world.name}</h4>
-                          <p className="text-[10px] font-bold text-black/40 uppercase tracking-widest mb-4">
-                            {isUnlocked ? 'Unlocked' : `Cost: ${formatNumber(world.cost)}`}
-                          </p>
+                      return (
+                        <motion.div 
+                          key={world.id}
+                          initial={{ y: 20, opacity: 0 }}
+                          animate={{ y: 0, opacity: 1 }}
+                          transition={{ delay: index * 0.1 }}
+                          className={`group relative p-6 rounded-[3rem] border-4 transition-all hover:-translate-y-2 ${
+                            isCurrent 
+                              ? 'border-blue-500 bg-white shadow-[0_20px_50px_rgba(59,130,246,0.3)]' 
+                              : isUnlocked 
+                                ? 'border-white bg-white/90 hover:bg-white shadow-xl' 
+                                : 'border-black/5 bg-black/[0.05] opacity-70 grayscale'
+                          }`}
+                        >
+                          {/* Island "Sand" border effect */}
+                          <div className={`absolute -inset-1 rounded-[3.2rem] opacity-20 blur-sm -z-10 bg-${world.color}-500`} />
 
-                          <div className="flex justify-center">
-                            {isCurrent ? (
-                              <div className="flex items-center gap-2 bg-blue-500 text-white px-4 py-2 rounded-2xl text-xs font-black shadow-lg">
-                                <Globe size={14} />
-                                CURRENT
-                              </div>
-                            ) : isUnlocked ? (
-                              <button 
-                                onClick={() => travelToIsland(world.id)}
-                                className="bg-black text-white px-6 py-3 rounded-2xl text-xs font-black hover:scale-110 transition-transform shadow-lg flex items-center gap-2"
-                              >
-                                <ChevronRight size={14} />
-                                TRAVEL
-                              </button>
-                            ) : (
-                              <button 
-                                onClick={() => unlockIsland(world.id)}
-                                disabled={!canAfford}
-                                className={`px-6 py-3 rounded-2xl text-xs font-black transition-all shadow-lg ${
-                                  canAfford ? 'bg-emerald-500 text-white hover:scale-110' : 'bg-black/10 text-black/30'
-                                }`}
-                              >
-                                UNLOCK
-                              </button>
-                            )}
-                          </div>
-                        </div>
+                          <div className="text-center">
+                            <div className={`w-20 h-20 mx-auto rounded-full flex items-center justify-center text-4xl mb-4 shadow-inner bg-${world.color}-100 text-${world.color}-600 border-4 border-white`}>
+                              {world.id.includes('forest') ? '🌳' : 
+                               world.id.includes('desert') ? '🌵' : 
+                               world.id.includes('winter') ? '❄️' : 
+                               world.id.includes('lava') ? '🌋' : 
+                               world.id.includes('cyber') ? '🤖' : 
+                               world.id.includes('ocean') ? '🌊' : 
+                               world.id.includes('space') ? '🚀' : 
+                               world.id.includes('heaven') ? '😇' : 
+                               world.id.includes('hell') ? '🔥' : 
+                               world.id.includes('crystal') ? '💎' :
+                               world.id.includes('void') ? '🌌' : '🏝️'}
+                            </div>
+                            
+                            <h4 className="font-black text-xl mb-1">{world.name}</h4>
+                            <p className="text-[10px] font-bold text-black/40 uppercase tracking-widest mb-4">
+                              {isUnlocked ? 'Unlocked' : `Cost: ${formatNumber(world.cost)}`}
+                            </p>
 
-                        {!isUnlocked && (
-                          <div className="mt-4 px-4">
-                            <div className="w-full bg-black/5 h-1.5 rounded-full overflow-hidden">
-                              <div 
-                                className="bg-emerald-500 h-full transition-all duration-500" 
-                                style={{ width: `${Math.min(100, (state.clicks / world.cost) * 100)}%` }}
-                              />
+                            <div className="flex justify-center">
+                              {isCurrent ? (
+                                <div className="flex items-center gap-2 bg-blue-500 text-white px-4 py-2 rounded-2xl text-xs font-black shadow-lg">
+                                  <Globe size={14} />
+                                  CURRENT
+                                </div>
+                              ) : isUnlocked ? (
+                                <button 
+                                  onClick={() => travelToIsland(world.id)}
+                                  className="bg-black text-white px-6 py-3 rounded-2xl text-xs font-black hover:scale-110 transition-transform shadow-lg flex items-center gap-2"
+                                >
+                                  <ChevronRight size={14} />
+                                  TRAVEL
+                                </button>
+                              ) : (
+                                <button 
+                                  onClick={() => unlockIsland(world.id)}
+                                  disabled={!canAfford}
+                                  className={`px-6 py-3 rounded-2xl text-xs font-black transition-all shadow-lg ${
+                                    canAfford ? 'bg-emerald-500 text-white hover:scale-110' : 'bg-black/10 text-black/30'
+                                  }`}
+                                >
+                                  UNLOCK
+                                </button>
+                              )}
                             </div>
                           </div>
-                        )}
-                      </motion.div>
-                    );
-                  })}
+
+                          {!isUnlocked && (
+                            <div className="mt-4 px-4">
+                              <div className="w-full bg-black/5 h-1.5 rounded-full overflow-hidden">
+                                <div 
+                                  className="bg-emerald-500 h-full transition-all duration-500" 
+                                  style={{ width: `${Math.min(100, (state.clicks / world.cost) * 100)}%` }}
+                                />
+                              </div>
+                            </div>
+                          )}
+                        </motion.div>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
             )}

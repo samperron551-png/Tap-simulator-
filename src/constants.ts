@@ -176,6 +176,24 @@ export const PET_DATA: Omit<Pet, 'id'>[] = [
   { name: 'Sapphire Dragon', multiplier: 1250000000000.0, rarity: 'Legendary', color: '#3498db', icon: '🐉' },
   { name: 'Sapphire God', multiplier: 2500000000000.0, rarity: 'Mythical', color: '#3498db', icon: '✨' },
   { name: 'Sapphire Secret', multiplier: 12500000000000.0, rarity: 'Secret', color: '#3498db', icon: '💎' },
+
+  // Island 13 Pets (81-87)
+  { name: 'Crystal Dog', multiplier: 100000000000.0, rarity: 'Common', color: '#00ffff', icon: '🐶' },
+  { name: 'Crystal Cat', multiplier: 250000000000.0, rarity: 'Uncommon', color: '#00ffff', icon: '🐱' },
+  { name: 'Crystal Fox', multiplier: 750000000000.0, rarity: 'Rare', color: '#00ffff', icon: '🦊' },
+  { name: 'Crystal Golem', multiplier: 2500000000000.0, rarity: 'Epic', color: '#00ffff', icon: '🗿' },
+  { name: 'Crystal Dragon', multiplier: 10000000000000.0, rarity: 'Legendary', color: '#00ffff', icon: '🐉' },
+  { name: 'Crystal God', multiplier: 50000000000000.0, rarity: 'Mythical', color: '#00ffff', icon: '✨' },
+  { name: 'Crystal Secret', multiplier: 250000000000000.0, rarity: 'Secret', color: '#00ffff', icon: '💎' },
+
+  // Island 14 Pets (88-94)
+  { name: 'Void Dog', multiplier: 1000000000000.0, rarity: 'Common', color: '#4b0082', icon: '🐶' },
+  { name: 'Void Cat', multiplier: 2500000000000.0, rarity: 'Uncommon', color: '#4b0082', icon: '🐱' },
+  { name: 'Void Fox', multiplier: 7500000000000.0, rarity: 'Rare', color: '#4b0082', icon: '🦊' },
+  { name: 'Void Golem', multiplier: 25000000000000.0, rarity: 'Epic', color: '#4b0082', icon: '🗿' },
+  { name: 'Void Dragon', multiplier: 100000000000000.0, rarity: 'Legendary', color: '#4b0082', icon: '🐉' },
+  { name: 'Void God', multiplier: 500000000000000.0, rarity: 'Mythical', color: '#4b0082', icon: '✨' },
+  { name: 'Void Secret', multiplier: 2500000000000000.0, rarity: 'Secret', color: '#4b0082', icon: '💎' },
 ];
 
 export const TOOLS: Tool[] = [
@@ -427,7 +445,39 @@ export const EGGS: Egg[] = [
       { petIndex: 79, chance: 0.09 }, // Mythical
       { petIndex: 80, chance: 0.01 }, // Secret
     ],
-  }
+  },
+  {
+    id: 'egg_crystal',
+    name: 'Crystal Egg',
+    price: 100000000000000,
+    currency: 'clicks',
+    color: '#00ffff',
+    pets: [
+      { petIndex: 81, chance: 0.25 },
+      { petIndex: 82, chance: 0.2 },
+      { petIndex: 83, chance: 0.15 },
+      { petIndex: 84, chance: 0.15 },
+      { petIndex: 85, chance: 0.15 },
+      { petIndex: 86, chance: 0.09 }, // Mythical
+      { petIndex: 87, chance: 0.01 }, // Secret
+    ],
+  },
+  {
+    id: 'egg_void',
+    name: 'Void Egg',
+    price: 5000000000000000,
+    currency: 'clicks',
+    color: '#4b0082',
+    pets: [
+      { petIndex: 88, chance: 0.25 },
+      { petIndex: 89, chance: 0.2 },
+      { petIndex: 90, chance: 0.15 },
+      { petIndex: 91, chance: 0.15 },
+      { petIndex: 92, chance: 0.15 },
+      { petIndex: 93, chance: 0.09 }, // Mythical
+      { petIndex: 94, chance: 0.01 }, // Secret
+    ],
+  },
 ];
 
 export const ISLANDS: Island[] = [
@@ -436,84 +486,112 @@ export const ISLANDS: Island[] = [
     name: 'Island 1',
     cost: 0,
     color: 'emerald',
-    eggIds: ['egg_basic', 'egg_rare', 'egg_mythic', 'egg_gem']
+    eggIds: ['egg_basic', 'egg_rare', 'egg_mythic', 'egg_gem'],
+    world: 1
   },
   {
     id: 'world_desert',
     name: 'Island 2',
     cost: 500000,
     color: 'amber',
-    eggIds: ['egg_desert']
+    eggIds: ['egg_desert'],
+    world: 1
   },
   {
     id: 'world_winter',
     name: 'Island 3',
     cost: 25000000,
     color: 'cyan',
-    eggIds: ['egg_winter']
+    eggIds: ['egg_winter'],
+    world: 1
   },
   {
     id: 'world_lava',
     name: 'Island 4',
     cost: 1000000000,
     color: 'red',
-    eggIds: ['egg_lava']
+    eggIds: ['egg_lava'],
+    world: 1
   },
   {
     id: 'world_cyber',
     name: 'Island 5',
     cost: 50000000000,
     color: 'lime',
-    eggIds: ['egg_cyber']
+    eggIds: ['egg_cyber'],
+    world: 1
   },
   {
     id: 'world_ocean',
     name: 'Island 6',
     cost: 2500000000000,
     color: 'blue',
-    eggIds: ['egg_ocean']
+    eggIds: ['egg_ocean'],
+    world: 1
   },
   {
     id: 'world_space',
     name: 'Island 7',
     cost: 100000000000000,
     color: 'indigo',
-    eggIds: ['egg_space']
+    eggIds: ['egg_space'],
+    world: 1
   },
   {
     id: 'world_heaven',
     name: 'Island 8',
     cost: 5000000000000000,
     color: 'sky',
-    eggIds: ['egg_heaven']
+    eggIds: ['egg_heaven'],
+    world: 1
   },
   {
     id: 'world_hell',
     name: 'Island 9',
     cost: 100000000000000000,
     color: 'rose',
-    eggIds: ['egg_hell']
+    eggIds: ['egg_hell'],
+    world: 1
   },
   {
     id: 'd2_world_1',
     name: 'Island 10',
     cost: 1000000000000000000,
     color: 'emerald',
-    eggIds: ['egg_d2_basic']
+    eggIds: ['egg_d2_basic'],
+    world: 1
   },
   {
     id: 'd2_world_2',
     name: 'Island 11',
     cost: 5000000000000000000,
     color: 'amber',
-    eggIds: ['egg_d2_desert']
+    eggIds: ['egg_d2_desert'],
+    world: 1
   },
   {
     id: 'd2_world_3',
     name: 'Island 12',
     cost: 25000000000000000000,
     color: 'blue',
-    eggIds: ['egg_d2_3']
+    eggIds: ['egg_d2_3'],
+    world: 1
+  },
+  {
+    id: 'world2_island1',
+    name: 'Crystal Island',
+    cost: 100000000000000000000,
+    color: 'cyan',
+    eggIds: ['egg_crystal'],
+    world: 2
+  },
+  {
+    id: 'world2_island2',
+    name: 'Void Island',
+    cost: 5000000000000000000000,
+    color: 'indigo',
+    eggIds: ['egg_void'],
+    world: 2
   }
 ];
 
@@ -532,12 +610,72 @@ export const REBIRTH_OPTIONS: RebirthOption[] = [
   { id: 'rebirth_500', amount: 500, cost: 2500000, gems: 8000 },
   { id: 'rebirth_1000', amount: 1000, cost: 5000000, gems: 17500 },
   { id: 'rebirth_5000', amount: 5000, cost: 25000000, gems: 100000 },
+  { id: 'rebirth_10k', amount: 10000, cost: 100000000, gems: 250000 },
+  { id: 'rebirth_25k', amount: 25000, cost: 500000000, gems: 750000 },
+  { id: 'rebirth_50k', amount: 50000, cost: 2500000000, gems: 2000000 },
+  { id: 'rebirth_100k', amount: 100000, cost: 10000000000, gems: 5000000 },
+  { id: 'rebirth_250k', amount: 250000, cost: 50000000000, gems: 15000000 },
+  { id: 'rebirth_500k', amount: 500000, cost: 250000000000, gems: 40000000 },
+  { id: 'rebirth_1m', amount: 1000000, cost: 1000000000000, gems: 100000000 },
+  { id: 'rebirth_2.5m', amount: 2500000, cost: 5000000000000, gems: 300000000 },
+  { id: 'rebirth_5m', amount: 5000000, cost: 25000000000000, gems: 750000000 },
+  { id: 'rebirth_10m', amount: 10000000, cost: 100000000000000, gems: 2000000000 },
+  { id: 'rebirth_25m', amount: 25000000, cost: 500000000000000, gems: 6000000000 },
+  { id: 'rebirth_50m', amount: 50000000, cost: 2500000000000000, gems: 15000000000 },
+  { id: 'rebirth_100m', amount: 100000000, cost: 10000000000000000, gems: 40000000000 },
+  { id: 'rebirth_250m', amount: 250000000, cost: 50000000000000000, gems: 120000000000 },
+  { id: 'rebirth_500m', amount: 500000000, cost: 250000000000000000, gems: 300000000000 },
+  { id: 'rebirth_1b', amount: 1000000000, cost: 1000000000000000000, gems: 1000000000000 },
+  { id: 'rebirth_2.5b', amount: 2500000000, cost: 5000000000000000000, gems: 3000000000000 },
+  { id: 'rebirth_5b', amount: 5000000000, cost: 25000000000000000000, gems: 8000000000000 },
+  { id: 'rebirth_10b', amount: 10000000000, cost: 100000000000000000000, gems: 20000000000000 },
+  { id: 'rebirth_25b', amount: 25000000000, cost: 500000000000000000000, gems: 60000000000000 },
+  { id: 'rebirth_50b', amount: 50000000000, cost: 2500000000000000000000, gems: 150000000000000 },
+  { id: 'rebirth_100b', amount: 100000000000, cost: 10000000000000000000000, gems: 400000000000000 },
+  { id: 'rebirth_250b', amount: 250000000000, cost: 50000000000000000000000, gems: 1200000000000000 },
+  { id: 'rebirth_500b', amount: 500000000000, cost: 250000000000000000000000, gems: 3000000000000000 },
+  { id: 'rebirth_1t', amount: 1000000000000, cost: 1000000000000000000000000, gems: 10000000000000000 },
+  { id: 'rebirth_2.5t', amount: 2500000000000, cost: 5000000000000000000000000, gems: 30000000000000000 },
+  { id: 'rebirth_5t', amount: 5000000000000, cost: 25000000000000000000000000, gems: 80000000000000000 },
+  { id: 'rebirth_10t', amount: 10000000000000, cost: 100000000000000000000000000, gems: 200000000000000000 },
+  { id: 'rebirth_25t', amount: 25000000000000, cost: 500000000000000000000000000, gems: 600000000000000000 },
+  { id: 'rebirth_50t', amount: 50000000000000, cost: 2500000000000000000000000000, gems: 1500000000000000000 },
 ];
 
 export const SUPER_REBIRTH_OPTIONS: SuperRebirthOption[] = [
   { id: 'sr_1', amount: 1, rebirthsNeeded: 1000, tokens: 1 },
   { id: 'sr_5', amount: 5, rebirthsNeeded: 5000, tokens: 6 },
   { id: 'sr_10', amount: 10, rebirthsNeeded: 10000, tokens: 15 },
+  { id: 'sr_25', amount: 25, rebirthsNeeded: 25000, tokens: 40 },
+  { id: 'sr_50', amount: 50, rebirthsNeeded: 50000, tokens: 90 },
+  { id: 'sr_100', amount: 100, rebirthsNeeded: 100000, tokens: 200 },
+  { id: 'sr_250', amount: 250, rebirthsNeeded: 250000, tokens: 550 },
+  { id: 'sr_500', amount: 500, rebirthsNeeded: 500000, tokens: 1200 },
+  { id: 'sr_1000', amount: 1000, rebirthsNeeded: 1000000, tokens: 2500 },
+  { id: 'sr_2500', amount: 2500, rebirthsNeeded: 2500000, tokens: 7000 },
+  { id: 'sr_5000', amount: 5000, rebirthsNeeded: 5000000, tokens: 15000 },
+  { id: 'sr_10k', amount: 10000, rebirthsNeeded: 10000000, tokens: 35000 },
+  { id: 'sr_25k', amount: 25000, rebirthsNeeded: 25000000, tokens: 100000 },
+  { id: 'sr_50k', amount: 50000, rebirthsNeeded: 50000000, tokens: 225000 },
+  { id: 'sr_100k', amount: 100000, rebirthsNeeded: 100000000, tokens: 500000 },
+  { id: 'sr_250k', amount: 250000, rebirthsNeeded: 250000000, tokens: 1400000 },
+  { id: 'sr_500k', amount: 500000, rebirthsNeeded: 500000000, tokens: 3000000 },
+  { id: 'sr_1m', amount: 1000000, rebirthsNeeded: 1000000000, tokens: 7000000 },
+  { id: 'sr_2.5m', amount: 2500000, rebirthsNeeded: 2500000000, tokens: 20000000 },
+  { id: 'sr_5m', amount: 5000000, rebirthsNeeded: 5000000000, tokens: 45000000 },
+  { id: 'sr_10m', amount: 10000000, rebirthsNeeded: 10000000000, tokens: 100000000 },
+  { id: 'sr_25m', amount: 25000000, rebirthsNeeded: 25000000000, tokens: 280000000 },
+  { id: 'sr_50m', amount: 50000000, rebirthsNeeded: 50000000000, tokens: 600000000 },
+  { id: 'sr_100m', amount: 100000000, rebirthsNeeded: 100000000000, tokens: 1300000000 },
+  { id: 'sr_250m', amount: 250000000, rebirthsNeeded: 250000000000, tokens: 3500000000 },
+  { id: 'sr_500m', amount: 500000000, rebirthsNeeded: 500000000000, tokens: 8000000000 },
+  { id: 'sr_1b', amount: 1000000000, rebirthsNeeded: 1000000000000, tokens: 18000000000 },
+  { id: 'sr_2.5b', amount: 2500000000, rebirthsNeeded: 2500000000000, tokens: 50000000000 },
+  { id: 'sr_5b', amount: 5000000000, rebirthsNeeded: 5000000000000, tokens: 110000000000 },
+  { id: 'sr_10b', amount: 10000000000, rebirthsNeeded: 10000000000000, tokens: 250000000000 },
+  { id: 'sr_25b', amount: 25000000000, rebirthsNeeded: 25000000000000, tokens: 700000000000 },
+  { id: 'sr_50b', amount: 50000000000, rebirthsNeeded: 50000000000000, tokens: 1500000000000 },
+  { id: 'sr_100b', amount: 100000000000, rebirthsNeeded: 100000000000000, tokens: 3500000000000 },
 ];
 
 export const REBIRTH_UPGRADES: RebirthUpgrade[] = [
@@ -601,12 +739,12 @@ export const SUPER_REBIRTH_UPGRADES: SuperRebirthUpgrade[] = [
 ];
 
 export const WHATS_NEW: WhatsNew = {
-  title: "Update 2.3.0: ISLAND ADVENTURE!",
+  title: "Update 2.4.0: WORLD 2 & MEGA REBIRTHS!",
   items: [
-    { icon: '🏝️', text: 'All worlds are now Islands!' },
-    { icon: '🗺️', text: 'Dimensions removed for a smoother journey!' },
-    { icon: '💰', text: 'New Island 10, 11, and 12 added with unique pets!' },
-    { icon: '🥚', text: 'Fixed eggs for new islands using incorrect pets!' },
-    { icon: '🎁', text: 'Use code ISLANDS for a massive boost!' },
+    { icon: '🌎', text: 'World 2 is here with 2 massive new Islands!' },
+    { icon: '💎', text: 'Crystal Island & Void Island added!' },
+    { icon: '🔄', text: '30+ New Rebirth & Super Rebirth options!' },
+    { icon: '🐾', text: '14 New Pets to collect in World 2!' },
+    { icon: '⚡', text: 'Exponential scaling for late-game players!' },
   ]
 };
